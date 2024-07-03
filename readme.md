@@ -1,9 +1,9 @@
+## Initial commands
 - yarn init -y
 - yarn add typescript -D
 - yarn tsc --init
-- yarn add ts-node-dev -D
   
-## packge.json
+### package.json
 ```json
 {
   "scripts": {
@@ -13,3 +13,19 @@
 ```
 - yarn add express
 - yarn add @types/express -D
+- yarn add ts-node-dev -D
+- yarn add knex sqlite3
+
+## Data-Base
+### Connections
+- List teacher's
+- List student's
+- List subject's
+
+### Use Cases to Register Users
+- Register teacher
+- Register student
+- Register subject
+
+### Use Cases to Record Classes Given or Planned
+- Register Classes
