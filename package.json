@@ -5,7 +5,9 @@
   "author": "Abunai",
   "license": "MIT",
   "scripts": {
-    "start": "npx tsx --watch src/server.ts"
+    "start": "npx tsx --watch src/server.ts",
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
