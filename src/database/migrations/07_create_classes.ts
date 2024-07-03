@@ -14,14 +14,14 @@ export async function up(knex: Knex): Promise<void> {
       .inTable('teachers')
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
-    
+
     table.integer('subject_id')
       .notNullable()
       .references('id')
       .inTable('subjects')
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
-    
+
     table.timestamp('date')
       .defaultTo(knex.raw('CURRENT_TIMESTAMP'))
       .notNullable();
