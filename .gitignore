@@ -1,5 +1,8 @@
 ### AL ###
 #Template for AL projects for Dynamics 365 Business Central
+node_modules
+# Keep environment variables out of version control
+.env
 #launch.json folder
 .vscode/
 #Cache folder
