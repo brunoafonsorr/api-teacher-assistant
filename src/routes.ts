@@ -1,21 +1,19 @@
 import express from 'express';
 import db from './database/connections';
 import StudentsController from './controllers/StudentsController';
+import TeachersController from './controllers/TeachersController';
 
 const routes = express.Router();
 const studentsController = new StudentsController();
+const teachersController = new TeachersController();
 
 interface GradeData{
   value: string,
   description: string
 };
 
-routes.get('/prof', (req, res) => {
-  
-})
-routes.post('/prof', (req, res) => {
-  
-})
+routes.get('/teachers', teachersController.index)
+routes.post('/teachers', teachersController.create)
 
 routes.get('/students', studentsController.index)
 routes.post('/students', studentsController.create)
