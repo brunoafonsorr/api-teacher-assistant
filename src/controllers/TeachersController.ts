@@ -48,7 +48,7 @@ export default class TeachersController {
     const trx = await db.transaction();
 
     try {
-      await trx('teachers').insert({
+      await trx('classes').insert({
         description,
         content,
         teacher_id,
@@ -91,6 +91,35 @@ export default class TeachersController {
 
       return res.status(400).json({
         error: 'Unexpected error while creating new class-students'
+      })
+    }
+  }
+
+  async createScore(req: Request, res: Response) {
+    const {
+      student_rm,
+      subject_id,
+      grade_id
+    } = req.body;
+
+    const trx = await db.transaction();
+
+    try {
+      await trx('score').insert({
+        student_rm,
+        subject_id,
+        grade_id
+      })
+
+      await trx.commit();
+
+      return res.status(201).send();
+    } catch (error) {
+      console.log(error);
+      await trx.rollback();
+
+      return res.status(400).json({
+        error: 'Unexpected error while creating new class'
       })
     }
   }

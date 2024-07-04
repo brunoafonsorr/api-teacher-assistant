@@ -138,7 +138,7 @@ export default class AdministrativeController {
         }
       }
 
-      await trx('studies').insert(studies)
+      await trx('studies').insert(studies(periods))
 
       await trx.commit();
 
