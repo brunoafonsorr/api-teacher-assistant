@@ -15,10 +15,10 @@ export async function up(knex: Knex): Promise<void> {
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
 
-    table.integer('subject_id')
+    table.integer('curse_subject_id')
       .notNullable()
       .references('id')
-      .inTable('subjects')
+      .inTable('courses_subjects')
       .onUpdate('CASCADE')
       .onDelete('CASCADE')
 

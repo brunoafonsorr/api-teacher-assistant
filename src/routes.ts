@@ -11,6 +11,7 @@ const administrativeController = new AdministrativeController();
 
 routes.get('/teachers', teachersController.index)
 routes.post('/teachers', teachersController.create)
+routes.post('/classes', teachersController.createClasses)
 
 routes.get('/students', studentsController.index)
 routes.post('/students', studentsController.create)
