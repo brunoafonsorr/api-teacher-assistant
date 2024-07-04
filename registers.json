@@ -1,0 +1,24 @@
+{
+  "grade": [
+    {
+      "value": "I",
+      "description": "Nota Insatisfatória"
+    },
+    {
+      "value": "R",
+      "description": "Nota Regular"
+    },
+    {
+      "value": "B",
+      "description": "Nota Boa"
+    },
+    {
+      "value": "MB",
+      "description": "Nota Muito Boa"
+    },
+    {
+      "value": "Na",
+      "description": "Nota Não Avaliada"
+    }
+  ]
+}
