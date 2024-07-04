@@ -67,4 +67,31 @@ export default class TeachersController {
       })
     }
   }
+
+  async createClassesStudents(req: Request, res: Response) {
+    const {
+      student_id,
+      class_id
+    } = req.body;
+
+    const trx = await db.transaction();
+
+    try {
+      await trx('class_students').insert({
+        student_id,
+        class_id
+      })
+
+      await trx.commit();
+
+      return res.status(201).send();
+    } catch (error) {
+      console.log(error);
+      await trx.rollback();
+
+      return res.status(400).json({
+        error: 'Unexpected error while creating new class-students'
+      })
+    }
+  }
 }
