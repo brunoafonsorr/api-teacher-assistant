@@ -2,6 +2,11 @@ import { Request, Response } from "express";
 
 import db from "../database/connections";
 
+interface ModuleItem {
+  currentModule: number,
+  totalModule: number
+}
+
 export default class AdministrativeController {
   async index(req: Request, res: Response) {
 
@@ -43,7 +48,7 @@ export default class AdministrativeController {
     const trx = await db.transaction();
 
     try {
-      await trx('subject').insert({
+      await trx('subjects').insert({
         name
       })
 
@@ -81,6 +86,69 @@ export default class AdministrativeController {
 
       return res.status(400).json({
         error: 'Unexpected error while creating new course'
+      })
+    }
+  }
+
+  async createCoursesSubjects(req: Request, res: Response) {
+    const {
+      name,
+      course_id,
+      subject_id
+    } = req.body;
+
+    const trx = await db.transaction();
+
+    try {
+      await trx('courses_subjects').insert({
+        name,
+        course_id,
+        subject_id
+      })
+
+      await trx.commit();
+
+      return res.status(201).send()
+    } catch (error) {
+      console.log(error);
+      await trx.rollback();
+
+      return res.status(400).json({
+        error: 'Unexpected error while creating new course_subject'
+      })
+    }
+  }
+
+  async createStudies(req: Request, res: Response) {
+    const {
+      student_id,
+      course_id,
+      periods
+    } = req.body;
+
+    const trx = await db.transaction();
+
+    try {
+      const studies = (moduleItem: ModuleItem) => {
+        return {
+          student_id,
+          course_id,
+          currentModule: moduleItem.currentModule,
+          totalModule: moduleItem.totalModule
+        }
+      }
+
+      await trx('studies').insert(studies)
+
+      await trx.commit();
+
+      return res.status(201).send()
+    } catch (error) {
+      console.log(error);
+      await trx.rollback();
+
+      return res.status(400).json({
+        error: 'Unexpected error while creating new studies'
       })
     }
   }
